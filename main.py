@@ -5,45 +5,48 @@
 import random
 import string
 from tkinter import *
+from tkinter import ttk
+from tkinter.messagebox import askyesno
 
 #entry box
 
 master = Tk()
 master.title('Password Generator')
-master.geometry('250x220')
+master.geometry('230x150')
 master.configure(bg='light grey')
 
 def passwordgen():
-    n = intentry.get() #tried numberentry.get
+    n = intentry.get()
     if n >=16:
-        return("maximum character limit is 16 - try again")
+        return(res.set("ERROR"))
     else:
         return(res.set(''.join(random.choice(string.ascii_uppercase + string.digits + string.ascii_lowercase) for _ in range(n))))
 
 intentry = IntVar()
 res=StringVar()
 
-numberlabel = Label(master, text='-Number of characters- ',
-                     bg = "light grey").grid(row=0, column=1, sticky=W)
+numberlabel = Label(master, text='-Number of Characters- ',
+                     bg = "light grey").grid(row=0, column=1, sticky=N)
 
-numberentry= Entry(master, text='', textvariable=intentry, bd=0,).grid(row=1, column=1, sticky=W)
-# master.bind('<Return>',passwordgen)
-#
+numberentry= Entry(master, text='', textvariable=intentry, bd=0,).grid(row=1, column=1, sticky=N)
+
 resultlabel = Label(master, text='-Password generated-',
-                     bg = "light grey").grid(row=2, column=1, sticky=W)
+                     bg = "light grey").grid(row=2, column=1, sticky=N)
 
 resulentryfinal = Entry(master, text='', textvariable=res, bd=0, state='readonly').grid(row=3, column=1, sticky=W)
 
 b = Button(master, text='convert', command=passwordgen)
-b.grid(row=5, column=1, sticky=W)
+# b.bind('<Return>',lambda event:passwordgen())
+b.grid(row=5, column=1, sticky=N, pady=4)
+
+# Errorlabel = Label(master, text='',
+#     bg = "light grey").grid(row=6, column=1, sticky=N)
 
 mainloop()
 
 #make it so as when you press enter in number entry - it returns passwordgen in the
-
-
-
-
+#center the resultentryfinal and numberentry
+#add style to the entries
 
 
 
